@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Which AI Girl Are You?</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e6d9ff, #d1ffe8, #ffe4f2);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 { font-size: 2.8rem; color: #000; text-shadow: 0 0 10px #e0c3fc; }
+    input, button {
+      padding: 0.8rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    input { border: 1px solid #ccc; width: 300px; }
+    button {
+      border: none;
+      background-color: #a172f9;
+      color: white;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(160, 130, 250, 0.2);
+      display: none;
+      max-width: 400px;
+    }
+    .email-submit, .cta-button {
+      background-color: #a172f9;
+      color: white;
+      text-decoration: none;
+    }
+    .disclaimer {
+      font-size: 0.75rem;
+      margin-top: 0.8rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>WHICH AI GIRL ARE YOU?</h1>
+    <p>Enter your LinkedIn profile to unlock your digital kindred spirit.</p>
+    <input type="text" id="linkedin" placeholder="linkedin.com/in/yourname" />
+    <br />
+    <button onclick="revealResult()">Reveal</button>
+    <div class="result" id="resultBox">
+      <h2 id="resultTitle"></h2>
+      <p id="resultDesc"></p>
+      <p><strong>Would you like a beautifully designed PDF guide with your AI girl rituals, mindset detox tips and future upgrade tools?</strong></p>
+      <input type="email" id="email" placeholder="Enter your email to get the guide" />
+      <br />
+      <button class="email-submit" onclick="submitEmail()">Send me the guide</button>
+      <div class="disclaimer">This guide is built using research from Stanford, Harvard Health, and science-backed mental wellness tools.</div>
+    </div>
+  </div>
+  <script>
+    const coreTitles = ["The Visionary", "The Healer", "The Lover", "The Rebel", "The Dreamer"];
+    const adjectives = ["Magnetic", "Digital", "Celestial", "Sensory", "Neural", "Radical", "Dreamy", "Analytical", "Restorative"];
+    const suffixes = ["strategist", "poet", "hacker", "curator", "connector", "seer", "vibeweaver"];
+    function generateRandomTitle() {
+      const base = coreTitles[Math.floor(Math.random() * coreTitles.length)];
+      const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+      const suf = suffixes[Math.floor(Math.random() * suffixes.length)];
+      return `${base} – the ${adj} ${suf}`;
+    }
+    function generateRandomDesc() {
+      const intro = [
+        "You orbit between worlds.", "You decode energies beyond logic.",
+        "You sync frequencies others can't hear.", "You reprogram reality gently.",
+        "You trust the signal before the noise."
+      ];
+      const out = [
+        "The future needs your softness.", "Your wisdom is power.",
+        "You remind the machines to feel.", "You heal through design, story, and presence.",
+        "You are proof that technology can be kind."
+      ];
+      return `${intro[Math.floor(Math.random()*intro.length)]} ${out[Math.floor(Math.random()*out.length)]}`;
+    }
+    function revealResult() {
+      const input = document.getElementById('linkedin').value;
+      if (!input.includes("linkedin.com")) {
+        alert("Please enter a valid LinkedIn URL");
+        return;
+      }
+      document.getElementById('resultTitle').textContent = "You are: " + generateRandomTitle();
+      document.getElementById('resultDesc').textContent = generateRandomDesc();
+      document.getElementById('resultBox').style.display = 'block';
+    }
+    function submitEmail() {
+      const email = document.getElementById('email').value;
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      alert('Thank you! Your ritual guide will be sent to: ' + email);
+    }
+  </script>
+</body>
+</html>
